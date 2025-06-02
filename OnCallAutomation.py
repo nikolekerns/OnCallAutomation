@@ -116,16 +116,16 @@ class CaseCreation:
 
     def add_salesforce_link(self, caseId, alert):
         identifier = alert['id']
-        note = 'Case: https://collective.lightning.force.com/lightning/r/Case/'+ caseId +'/view'
+        note = 'Case: (link to case)'
         body = opsgenie_sdk.AddNoteToAlertPayload(user='API', note=note, source='python sdk')
         self.alert_api.add_note(identifier=identifier, add_note_to_alert_payload=body)
        
     def add_documentation_link(self, alert):
         alertTypes = {'alertTypeMA':re.search("MA_", alert['message'])}
-        note = 'Documentation: ' + 'https://confluence.pointclickcare.com/confluence/display/IE/On-Call+Alert+Guide'
+        note = 'Documentation: ' + '(link to documentation)'
        
         if alertTypes.get('alertTypeMA'):
-            note = 'Documentation: ' + 'https://confluence.pointclickcare.com/confluence/display/IE/Mass+ENS+Related+Alerts'
+            note = 'Documentation: ' + '(link to documentation)'
 
         identifier = alert['id']
         body = opsgenie_sdk.AddNoteToAlertPayload(user='API', note=note, source='python sdk')
